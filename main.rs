@@ -151,11 +151,11 @@ impl<'a> KdTree<'a> {
     fn variance(&self, k: usize, index: &[usize]) -> f64 {
         let n = index.len() as f64;
         let mut mean = 0 as f64;
-        for i in &self.index {
+        for i in index {
             mean += self.data[*i][k] / n;
         }
         let mut var = 0 as f64;
-        for i in &self.index {
+        for i in index {
             var += (self.data[*i][k] - mean) * (self.data[*i][k] - mean) / (n - 1f64);
         }
         return var;
@@ -164,9 +164,6 @@ impl<'a> KdTree<'a> {
         let index = &self.index[begin..end];
         if index.is_empty() {
             return None;
-        }
-        if end - begin > 100 {
-            println!("begin={}, end={}", begin, end);
         }
         let n = index.len();
         let var0 = self.variance(0, index);
@@ -425,7 +422,14 @@ fn main() {
     }
     let mut csv = File::create("../ans_rust.csv").unwrap();
     for i in 0..data.len() {
-        writeln!(&mut csv, "{},{},{}", data[i].lon(), data[i].lat(), group[i]).unwrap();
+        writeln!(
+            &mut csv,
+            "{:.6},{:.6},{}",
+            data[i].lon(),
+            data[i].lat(),
+            group[i]
+        )
+        .unwrap();
     }
     drop(csv);
 }
