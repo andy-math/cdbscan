@@ -1,5 +1,5 @@
 # cdbscan
-An implementation in Rust/C++ for article "A C-DBSCAN Algorithm for Determining Bus-Stop Locations Based on Taxi GPS Data"
+An implementation in Rust/C++/MATLAB for article "A C-DBSCAN Algorithm for Determining Bus-Stop Locations Based on Taxi GPS Data"
 
 C++ compile command: `clang++ -std=c++20 -g -O3 -fno-omit-frame-pointer -Wall -fsanitize=address,undefined main.cpp`
 
